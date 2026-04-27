@@ -1,4 +1,4 @@
-FROM ghcr.io/paperclipai/paperclip:latest
+FROM ghcr.io/paperclipai/paperclip:sha-b8725c5
 
 # Patch: embed paperclip context inside message field instead of top-level property
 # Fixes: "invalid agent params: at root: unexpected property 'paperclip'"
