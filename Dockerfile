@@ -1,10 +1,5 @@
 FROM ghcr.io/paperclipai/paperclip:sha-b8725c5
 
-# Patch the openclaw-gateway adapter source and rebuild
-COPY packages/adapters/openclaw-gateway/src/server/execute.ts /app/packages/adapters/openclaw-gateway/src/server/execute.ts
-
-# Rebuild the adapter package
-WORKDIR /app/packages/adapters/openclaw-gateway
-RUN pnpm run build
-
-WORKDIR /app
+# Patch: embed paperclip context inside message field instead of top-level property
+# Fixes: "invalid agent params: at root: unexpected property 'paperclip'"
+COPY packages/adapters/openclaw-gateway/dist/server/execute.js /app/packages/adapters/openclaw-gateway/dist/server/execute.js
